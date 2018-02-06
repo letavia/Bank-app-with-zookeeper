@@ -9,28 +9,28 @@ public class zkSendMessagesBank implements zkSendMessages {
   }
 
   public byte[] convertToBytes(zkOperationBank operation) throws IOException {
-	  byte[] data = SerializationUtils.serialize(operation);
-	  return data;
+	 byte[] data = SerializationUtils.serialize(operation);
+	 return data;
   }
   
   public zkOperationBank convertToObject(byte[] receivedByte) throws IOException, ClassNotFoundException {
-	  zkOperationBank obj = (zkOperationBank) SerializationUtils.deserialize(receivedByte);
-	  return obj;
+	 zkOperationBank obj = (zkOperationBank) SerializationUtils.deserialize(receivedByte);
+	 return obj;
   }
   
   public void sendMessage(ZooKeeper zk, byte[] operation) {	  
-	  try {
-		  zk.create("/operations/op-", operation, Ids.OPEN_ACL_UNSAFE, CreateMode.PERSISTENT_SEQUENTIAL);
-    } catch (Exception e) {
-      System.err.println(e);
-      System.out.println("Error when sending message");
-      e.printStackTrace();
+	try {
+		zk.create("/operations/op-", operation, Ids.OPEN_ACL_UNSAFE, CreateMode.PERSISTENT_SEQUENTIAL);
+    	} catch (Exception e) {
+      	System.err.println(e);
+      	System.out.println("Error when sending message");
+      	e.printStackTrace();
     }
   }
 
   public void sendAdd(ZooKeeper zk, zkClient client) {
-    zkOperationBank operation = new zkOperationBank(zkOperationEnum.CREATE_CLIENT, client);
-    try {
+    	zkOperationBank operation = new zkOperationBank(zkOperationEnum.CREATE_CLIENT, client);
+    	try {
 		byte[] sendByte = convertToBytes(operation);
 		sendMessage(zk, sendByte);
 	} catch (IOException e) {
@@ -40,13 +40,13 @@ public class zkSendMessagesBank implements zkSendMessages {
   }
 
   public void sendRead(ZooKeeper zk, Integer accountNumber) {
-    zkOperationBank operation = new zkOperationBank(zkOperationEnum.READ_CLIENT, accountNumber);
-    new zkBank().handleReceiverMsg(operation);
+    	zkOperationBank operation = new zkOperationBank(zkOperationEnum.READ_CLIENT, accountNumber);
+    	new zkBank().handleReceiverMsg(operation);
   }
 
   public void sendUpdate(ZooKeeper zk, zkClient client) {
-    zkOperationBank operation = new zkOperationBank(zkOperationEnum.UPDATE_CLIENT, client);
-    try {
+    	zkOperationBank operation = new zkOperationBank(zkOperationEnum.UPDATE_CLIENT, client);
+    	try {
 		byte[] sendByte = convertToBytes(operation);
 		sendMessage(zk, sendByte);
 	} catch (IOException e) {
@@ -56,8 +56,8 @@ public class zkSendMessagesBank implements zkSendMessages {
   }
 
   public void sendDelete(ZooKeeper zk, Integer accountNumber) {
-    zkOperationBank operation = new zkOperationBank(zkOperationEnum.DELETE_CLIENT, accountNumber);
-    try {
+    	zkOperationBank operation = new zkOperationBank(zkOperationEnum.DELETE_CLIENT, accountNumber);
+    	try {
 		byte[] sendByte = convertToBytes(operation);
 		sendMessage(zk, sendByte);
 	} catch (IOException e) {
@@ -67,7 +67,7 @@ public class zkSendMessagesBank implements zkSendMessages {
   }
 
   public void sendClientDB(ZooKeeper zk, zkClientDB clientDB) {
-      new zkBank().clientDB.getClientDB();    
+      	new zkBank().clientDB.getClientDB();    
   }
 
 }
