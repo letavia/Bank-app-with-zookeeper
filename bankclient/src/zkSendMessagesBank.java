@@ -39,11 +39,6 @@ public class zkSendMessagesBank implements zkSendMessages {
 	}
   }
 
-  public void sendRead(ZooKeeper zk, Integer accountNumber) {
-    	zkOperationBank operation = new zkOperationBank(zkOperationEnum.READ_CLIENT, accountNumber);
-    	new zkBank().handleReceiverMsg(operation);
-  }
-
   public void sendUpdate(ZooKeeper zk, zkClient client) {
     	zkOperationBank operation = new zkOperationBank(zkOperationEnum.UPDATE_CLIENT, client);
     	try {
@@ -64,10 +59,6 @@ public class zkSendMessagesBank implements zkSendMessages {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}
-  }
-
-  public void sendClientDB(ZooKeeper zk, zkClientDB clientDB) {
-      	new zkBank().clientDB.getClientDB();    
   }
 
 }
