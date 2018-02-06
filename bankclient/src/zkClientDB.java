@@ -4,10 +4,6 @@ public class zkClientDB implements java.io.Serializable {
   private static final long serialVersionUID = 1L;
   public HashMap<Integer, zkClient> clientDBHM;
 
-  //public zkClientDB(zkClientDB clientDB) {
-  //  this.clientDBHM = clientDB.getClientDB();
-  //}
-
   public zkClientDB() {
     clientDBHM = new HashMap<Integer, zkClient>();
     initMembers();
@@ -31,7 +27,6 @@ public class zkClientDB implements java.io.Serializable {
       System.out.println("Account already existing");
       return false;
     }
-    //clientDBHM.put(Integer.valueOf(client.getAccountNumber()), client);
     return true;
   }
 
@@ -48,7 +43,6 @@ public class zkClientDB implements java.io.Serializable {
     if (clientDBHM.containsKey(Integer.valueOf(accNumber))) {
       zkClient client = (zkClient)clientDBHM.get(Integer.valueOf(accNumber));
       client.setBalance(balance);
-      //clientDBHM.put(Integer.valueOf(client.getAccountNumber()), client);
       return true;
     }
     System.out.println("Account not existing");
@@ -58,7 +52,6 @@ public class zkClientDB implements java.io.Serializable {
   public boolean deleteClient(Integer accountNumber)
   {
     if (clientDBHM.containsKey(accountNumber)) {
-      //clientDBHM.remove(accountNumber);
       return true;
     }
     System.out.println("Account not existing");
