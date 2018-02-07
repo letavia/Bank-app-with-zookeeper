@@ -8,7 +8,7 @@ import org.apache.zookeeper.ZooKeeper;
 
 public class zkMainBank {
 	
-	private zkBank bank;
+  private zkBank bank;
 
   public zkClient readClient(Scanner sc)
   {
