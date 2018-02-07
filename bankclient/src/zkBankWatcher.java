@@ -57,7 +57,7 @@ public class zkBankWatcher implements Watcher{
 			try {			
 				// Create root member folder, if not already created
 				String rootMembersCreated; 
-				Stat rootMembersExist = zk.exists(rootMembers, watcherMember); //this);
+				Stat rootMembersExist = zk.exists(rootMembers, watcherMember); 
 				if (rootMembersExist == null) {
 					rootMembersCreated = zk.create(rootMembers, new byte[0],
 							Ids.OPEN_ACL_UNSAFE, CreateMode.PERSISTENT);
@@ -71,18 +71,18 @@ public class zkBankWatcher implements Watcher{
 				myId = myId.replace(rootMembers + "/", "");
 				System.out.println("My member ID: "+ myId );
 
-				List<String> listMember = zk.getChildren(rootMembers, watcherMember, rootMembersExist); //this, s);
+				List<String> listMember = zk.getChildren(rootMembers, watcherMember, rootMembersExist); 
 				
 				// Create root operation folder, if not already created
 				String rootOperationsCreated;
-				Stat rootOperationsExist = zk.exists(rootOperations, watcherOperation); //this);
+				Stat rootOperationsExist = zk.exists(rootOperations, watcherOperation); 
 				if (rootOperationsExist == null) {
 					rootOperationsCreated = zk.create(rootOperations, new byte[0],
 							Ids.OPEN_ACL_UNSAFE, CreateMode.PERSISTENT);
 					System.out.println("Root operation folder created: " + rootOperationsCreated);
 				}
 				
-				List<String> listOperation = zk.getChildren(rootOperations, watcherOperation, rootOperationsExist); //this, s);
+				List<String> listOperation = zk.getChildren(rootOperations, watcherOperation, rootOperationsExist); 
 				
 			} catch (KeeperException e) {
 				System.out.println("The session with Zookeeper failes. Closing");
@@ -106,7 +106,7 @@ public class zkBankWatcher implements Watcher{
 			System.out.println("------------------Watcher Member------------------\n");
 			try {
 				System.out.println("Event: " + event.toString());		
-				List<String> list = zk.getChildren(rootMembers,  watcherMember); //this);
+				List<String> list = zk.getChildren(rootMembers,  watcherMember); 
 				printListMembers(list);
 				Collections.sort(list);
 				String newMember = list.get(list.size()-1);
@@ -123,7 +123,7 @@ public class zkBankWatcher implements Watcher{
 			System.out.println("------------------Watcher Operation------------------\n");
 			try {
 				System.out.println("Event: " + event.toString());
-				List<String> list = zk.getChildren(rootOperations,  watcherOperation); //this);
+				List<String> list = zk.getChildren(rootOperations,  watcherOperation); 
 				if (list.size() != 0) {
 					printListOperations(list);
 					Collections.sort(list);
@@ -145,9 +145,9 @@ public class zkBankWatcher implements Watcher{
 	public void process(WatchedEvent event) {
 		try {
 			System.out.println("!!!!!!" + event.toString());
-			List<String> listMember = zk.getChildren(rootMembers, watcherMember); //this);
+			List<String> listMember = zk.getChildren(rootMembers, watcherMember); 
 			printListMembers(listMember);
-			List<String> listOperation = zk.getChildren(rootOperations, watcherOperation); //this);
+			List<String> listOperation = zk.getChildren(rootOperations, watcherOperation); 
 			printListMembers(listOperation);
 		} catch (Exception e) {
 			System.out.println("Error in project");
