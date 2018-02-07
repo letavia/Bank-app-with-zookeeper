@@ -8,7 +8,6 @@ public class zkBank {
   public zkClientDB clientDB;
   public zkSendMessagesBank sendMessages;
   HashMap<Integer, zkClient> clientDBHM;
-  boolean what;
 
   public zkBank() {
     clientDB = new zkClientDB();
