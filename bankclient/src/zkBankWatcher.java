@@ -33,7 +33,7 @@ public class zkBankWatcher implements Watcher{
 		int i = rand.nextInt(hosts.length);
 
 		// Create a session and wait until it is created.
-		// When is created, the watcher is notified
+		// When it is created, the watcher is notified
 		try {
 			if (zk == null) {
 				zk = new ZooKeeper(hosts[i], SESSION_TIMEOUT, cWatcher);
@@ -49,7 +49,7 @@ public class zkBankWatcher implements Watcher{
 			System.out.println("Error");
 		}
 		
-        server = hosts[i];
+                server = hosts[i];
 		System.out.println("You are connected to server: " + server );
 		// Add the process to the members in zookeeper
 
